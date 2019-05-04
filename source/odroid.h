@@ -442,6 +442,7 @@ static int pinToGpioOdroidXU [64] = {
 
 /* Non-static add extern definition below */
 int odroid_found;
+int odroid_type;
 int  piModel;
 
 const int bcmToOGpioOdroidC[64] = {	// BCM ModE
@@ -498,6 +499,7 @@ const int (*bcm_to_odroidgpio)[64];
 #else /* DEFINE_ODROID_VARS */
 
 extern int odroid_found;
+extern int odroid_type;
 extern int  piModel;
 extern const int physToGpioOdroidC[64];
 extern const int physToGpioOdroidC2_Rev1_1[64];

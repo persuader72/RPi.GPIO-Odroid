@@ -36,6 +36,7 @@ int get_rpi_info(rpi_info *info)
    int found = 0;
    int len;
 
+   odroid_type = 0;
    if ((fp = fopen("/proc/cpuinfo", "r")) == NULL)
       return -1;
    while(!feof(fp)) {
@@ -50,8 +51,13 @@ int get_rpi_info(rpi_info *info)
          odroid_found = 0;
       }
       else {  //Check for Odroid
-        if (strstr(hardware, "ODROID")) {
+        if (strstr(hardware, "ODROID-C2")) {
             odroid_found = found = 1;
+            odroid_type = 2;
+            setInfoOdroid(hardware, (void *)info);
+        }
+        else if (strstr(hardware, "ODROID")) {
+            odroid_found = odroid_type = found = 1;
             setInfoOdroid(hardware, (void *)info);
         }
       }
